@@ -1,0 +1,377 @@
+#Removing non-english reviews
+> data  <- fromJSON("https://query.data.world/s/4ria2tfww73wmhfzke5z2w4zlez2re")
+> 
+> #Fetching data
+> set.seed(225)
+> reviews <-sample_n(data, 5000)
+> 
+> #Unique ratings
+> unique(reviews$review_rating)
+[1] "5.0 out of 5 stars" "2.0 out of 5 stars" "4.0 out of 5 stars" "1.0 out of 5 stars" "3.0 out of 5 stars"
+> 
+> #String to int conversion of ratings
+> reviews$rating <- as.numeric(str_sub(reviews$review_rating,1,1))
+> summary(reviews)
+   product          product_company    profile_name       review_title       review_rating      review_text       
+ Length:5000        Length:5000        Length:5000        Length:5000        Length:5000        Length:5000       
+ Class :character   Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+ helpful_count      total_comments   review_country     reviewed_at            url              crawled_at       
+ Length:5000        Min.   : 0.000   Length:5000        Length:5000        Length:5000        Min.   :1.603e+12  
+ Class :character   1st Qu.: 0.000   Class :character   Class :character   Class :character   1st Qu.:1.603e+12  
+ Mode  :character   Median : 0.000   Mode  :character   Mode  :character   Mode  :character   Median :1.603e+12  
+                    Mean   : 0.077                                                            Mean   :1.603e+12  
+                    3rd Qu.: 0.000                                                            3rd Qu.:1.603e+12  
+                    Max.   :21.000                                                            Max.   :1.603e+12  
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+                                                                                                                 
+     _id            verified_purchase     color            style_name         size_name           category        
+ Length:5000        Length:5000        Length:5000        Length:5000        Length:5000        Length:5000       
+ Class :character   Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+ sub_category       images.Length  images.Class  images.Mode     rating     
+ Length:5000         0         -none-     character          Min.   :1.000  
+ Class :character    0         -none-     character          1st Qu.:3.000  
+ Mode  :character    0         -none-     character          Median :4.000  
+                     0         -none-     character          Mean   :4.016  
+                     0         -none-     character          3rd Qu.:5.000  
+                     0         -none-     character          Max.   :5.000  
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     1         -none-     character                         
+                     4         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     5         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     2         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     2         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     1         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+                     0         -none-     character                         
+ [ reached getOption("max.print") -- omitted 4953 rows ]
+> 
+> #Dropping Neutral Reviews and NULL values
+> reviews_final <- reviews[reviews$rating != 3, ]
+> 
+> reviews_final_corp <- reviews_final[, c("rating", "review_text")]
+> 
+> neg_set <- reviews_final_corp[reviews_final_corp$rating < 3,]
+> pos_set <- reviews_final_corp[reviews_final_corp$rating > 3,]
+> 
+> #Inspecting the reviews
+> head(pos_set,1)
+  rating     review_text
+1      5 \n  Great.. !\n
+> head(neg_set,1)
+  rating                                  review_text
+3      2 \n  Yes quality is so third grade category\n
+> 
+> #Correct encoding
+> pos_reviews <- stringr::str_conv(pos_set$review_text, "UTF-8")
+> pos_docs <- Corpus(VectorSource(pos_reviews))
+> neg_reviews <- stringr::str_conv(neg_set$review_text, "UTF-8")
+> neg_docs <- Corpus(VectorSource(neg_reviews))
+> 
+> pos_dtmdocs <- DocumentTermMatrix(pos_docs,
++                                   control = list(lemma=TRUE,removePunctuation = TRUE,
++                                                  removeNumbers = TRUE, stopwords = TRUE,
++                                                  tolower = TRUE))
+> pos_raw.sum=apply(pos_dtmdocs,1,FUN=sum)
+> pos_dtmdocs=pos_dtmdocs[pos_raw.sum!=0,]
+> neg_dtmdocs <- DocumentTermMatrix(neg_docs,
++                                   control = list(lemma=TRUE,removePunctuation = TRUE,
++                                                  removeNumbers = TRUE, stopwords = TRUE,
++                                                  tolower = TRUE))
+> neg_raw.sum=apply(neg_dtmdocs,1,FUN=sum)
+> neg_dtmdocs=neg_dtmdocs[neg_raw.sum!=0,]
+> 
+> #Positive word cloud
+> library(wordcloud)
+> pos_dtm.new <- as.matrix(pos_dtmdocs)
+> pos_frequency <- colSums(pos_dtm.new)
+> pos_frequency <- sort(pos_frequency, decreasing=TRUE)
+> pos_doc_length <- rowSums(pos_dtm.new)
+> 
+> pos_frequency[1:10]
+   good   phone  camera battery    best product    nice quality   price  mobile 
+   1521    1264     809     598     495     484     481     443     399     365 
+> 
+> pos_words <- names(pos_frequency)
+> 
+> wordcloud(pos_words[1:100], pos_frequency[1:100], rot.per=0.15, 
++           random.order = FALSE, scale=c(4,0.5),
++           random.color = FALSE, colors=brewer.pal(8,"Dark2"))
+> title(main = "Positive review wordcloud")
+> 
+> #Negative word cloud
+> neg_dtm.new <- as.matrix(neg_dtmdocs)
+> neg_frequency <- colSums(neg_dtm.new)
+> neg_frequency <- sort(neg_frequency, decreasing=TRUE)
+> neg_doc_length <- rowSums(neg_dtm.new)
+> 
+> neg_frequency[1:10]
+  phone  camera battery    good quality product  mobile problem     one     bad 
+    211     146     108     105      93      93      82      77      68      68 
+> 
+> neg_words <- names(neg_frequency)
+> 
+> wordcloud(neg_words[1:100], neg_frequency[1:100], rot.per=0.15, 
++           random.order = FALSE, scale=c(4,0.5),
++           random.color = FALSE, colors=brewer.pal(8,"Dark2"))
+> title(main = "Negative review wordcloud")
+> 
+> #Determining number of topics (positive)
+> library(ldatuning)
+> pos_result <- FindTopicsNumber(
++   pos_dtm.new,
++   topics = seq(from = 2, to = 20, by = 1),
++   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010"),
++   method = "Gibbs",
++   control = list(seed = 430),
++   mc.cores = 2L,
++   verbose = TRUE
++ )
+fit models... done.
+calculate metrics:
+  Griffiths2004... done.
+  CaoJuan2009... done.
+  Arun2010... done.
+> FindTopicsNumber_plot(pos_result)
+> 
+> #Determining number of topics (negative)
+> neg_result <- FindTopicsNumber(
++   neg_dtm.new,
++   topics = seq(from = 2, to = 20, by = 1),
++   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010"),
++   method = "Gibbs",
++   control = list(seed = 430),
++   mc.cores = 2L,
++   verbose = TRUE
++ )
+fit models... done.
+calculate metrics:
+  Griffiths2004... done.
+  CaoJuan2009... done.
+  Arun2010... done.
+> FindTopicsNumber_plot(neg_result)
+> 
+> #Topic modelling
+> library(dplyr)
+> pos_ldaOut <-LDA(pos_dtmdocs,7, method="Gibbs", 
++                  control=list(iter=1000,seed=430))
+> neg_ldaOut <-LDA(neg_dtmdocs,9, method="Gibbs", 
++                  control=list(iter=1000,seed=430))
+> 
+> #Positive topic labeling
+> pos_ldaOut.terms <- as.matrix(terms(pos_ldaOut, 10))
+> pos_ldaOut.terms
+      Topic 1      Topic 2     Topic 3       Topic 4      Topic 5    Topic 6       Topic 7  
+ [1,] "mobile"     "good"      "battery"     "best"       "phone"    "camera"      "one"    
+ [2,] "phone"      "nice"      "life"        "phone"      "good"     "quality"     "like"   
+ [3,] "awesome"    "product"   "fast"        "price"      "great"    "good"        "can"    
+ [4,] "money"      "overall"   "also"        "range"      "really"   "awesome"     "oneplus"
+ [5,] "excellent"  "super"     "fingerprint" "redmi"      "features" "performance" "using"  
+ [6,] "amazing"    "satisfied" "use"         "better"     "look"     "display"     "just"   
+ [7,] "value"      "backup"    "camera"      "note"       "colour"   "back"        "will"   
+ [8,] "budget"     "pubg"      "reader"      "buy"        "problem"  "processor"   "time"   
+ [9,] "everything" "happy"     "charging"    "smartphone" "looks"    "perfect"     "nord"   
+[10,] "amazon"     "improve"   "finger"      "pro"        "premium"  "design"      "plus"   
+> 
+> #Negative topic labeling
+> neg_ldaOut.terms <- as.matrix(terms(neg_ldaOut, 10))
+> neg_ldaOut.terms
+      Topic 1        Topic 2     Topic 3   Topic 4    Topic 5   Topic 6    Topic 7      Topic 8       Topic 9        
+ [1,] "phone"        "using"     "battery" "one"      "phone"   "buy"      "mobile"     "camera"      "problem"      
+ [2,] "like"         "bad"       "good"    "nord"     "screen"  "product"  "issue"      "quality"     "working"      
+ [3,] "even"         "day"       "days"    "plus"     "bad"     "dont"     "worst"      "poor"        "return"       
+ [4,] "product"      "issues"    "life"    "better"   "call"    "display"  "time"       "pro"         "oneplus"      
+ [5,] "just"         "good"      "fast"    "also"     "product" "worst"    "amazon"     "redmi"       "automatically"
+ [6,] "disappointed" "many"      "month"   "properly" "average" "network"  "waste"      "note"        "use"          
+ [7,] "price"        "like"      "will"    "hang"     "heating" "oneplus"  "service"    "times"       "can"          
+ [8,] "issue"        "bluetooth" "charger" "low"      "phones"  "mobile"   "money"      "video"       "one"          
+ [9,] "always"       "ever"      "nice"    "much"     "charge"  "charging" "experience" "replacement" "issue"        
+[10,] "use"          "display"   "usage"   "getting"  "started" "received" "got"        "charging"    "software"     
+> 
+> #Top 3 factors in Positive reviews visualized
+> library(ggplot2)
+> pos_ldaOut.topics <- data.frame(topics(pos_ldaOut))
+> pos_ldaOut.topics$index <- as.numeric(row.names(pos_ldaOut.topics))
+> ggplot(pos_ldaOut.topics, aes(x = topics.pos_ldaOut.)) +
++   geom_bar(fill = "skyblue", color = "black") +
++   labs(title = "Count Plot for Positive Review topics", x = "Topic", y = "Count") +
++   theme_minimal() +
++   theme(
++     plot.title = element_text(hjust = 0.5, size = 15, face = "bold"),
++     axis.title.x = element_text(size = 12),
++     axis.title.y = element_text(size = 12)
++   )
+> 
+> #Top 3 factors in Negative reviews visualized
+> neg_ldaOut.topics <- data.frame(topics(neg_ldaOut))
+> neg_ldaOut.topics$index <- as.numeric(row.names(neg_ldaOut.topics))
+> ggplot(neg_ldaOut.topics, aes(x = topics.neg_ldaOut.))+
++   geom_bar(fill = "skyblue", color = "black") +
++   labs(title = "Count Plot for Negative Review topics", x = "Topic", y = "Count") +
++   theme_minimal() +
++   theme(
++     plot.title = element_text(hjust = 0.5, size = 15, face = "bold"),
++     axis.title.x = element_text(size = 12),
++     axis.title.y = element_text(size = 12)
++   )
+> 
