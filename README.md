@@ -1,4 +1,4 @@
-# Forecasting and Advanced Business Analysis - R Projects
+# Forecasting and Advanced Business Analysis using R
 
 ## 1. **Analysis of Factors Affecting Business Analyst Wages**
 
