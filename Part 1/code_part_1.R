@@ -1,4 +1,4 @@
-data <- read.csv("B3.csv")
+data <- read.csv("data.csv")
 
 head(data)
 
