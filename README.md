@@ -1,4 +1,4 @@
-# Forecasting and Advanced Business Analysis using R
+# Regression and Text Analysis using R
 
 ## 1. **Analysis of Factors Affecting Business Analyst Wages**
 
